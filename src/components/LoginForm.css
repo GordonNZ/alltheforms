@@ -67,6 +67,9 @@
   );
   transform: scale(1.05);
 }
+.loginBtn:active {
+  transform: scale(1.01);
+}
 .loginOptions {
   display: flex;
   justify-content: space-between;
@@ -95,4 +98,21 @@ input[type='checkbox'] {
   color: rgb(83, 35, 255);
   font-weight: 400;
   text-decoration: none;
+}
+.loginNotice {
+  color: crimson;
+  margin: 0.5rem 0;
+}
+.inputContainer {
+  width: 100%;
+  position: relative;
+}
+.eyeIcon {
+  position: absolute;
+  z-index: 2;
+  right: 20%;
+  top: 33.5%;
+  font-size: 1.6rem;
+  color: rgba(134, 47, 255, 1);
+  cursor: pointer;
 }
