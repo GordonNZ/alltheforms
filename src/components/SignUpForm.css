@@ -1,0 +1,63 @@
+.signup {
+  background-color: rgb(35, 41, 51);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(246, 251, 255);
+  text-align: left;
+}
+.signupH1 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  margin: 0.2rem 0;
+}
+.signupDesc {
+  opacity: 0.6;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+.signupLabel {
+  font-size: 1.1rem;
+  font-weight: 300;
+  text-align: left;
+}
+.signupInput {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 2px solid rgba(246, 251, 255, 0.7);
+  padding: 0.85rem 0.5rem;
+  font-size: 1rem;
+  color: rgb(246, 251, 255);
+}
+.signupInput:focus {
+  outline: none;
+}
+.flex {
+  display: flex;
+}
+.signupContainer {
+  margin: 2rem 0 0 0;
+  flex-direction: column;
+}
+.signupFullName {
+}
+.signupFirstName {
+  margin-right: 1.5rem;
+}
+.createButton {
+  background-color: rgb(48, 98, 186);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: rgb(246, 251, 255);
+  width: 100%;
+  padding: 0.65rem;
+  margin: 1.4rem 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.createButton:hover {
+  background-color: rgb(23, 96, 221);
+}
