@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import './SignUpForm.css';
-
-const passwordRegex = new RegExp(
-  `/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/`
-);
+import axios from 'axios';
 
 export default function SignUpForm() {
   const [email, setEmail] = useState('');
@@ -11,6 +8,7 @@ export default function SignUpForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [signupMessage, setSignupMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +30,32 @@ export default function SignUpForm() {
       return;
     } else {
       console.log('submit successeful');
+
+      axios
+        .post('http://localhost:4000/api/signup', {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            const signupMessage = (
+              <span style={{ color: '#0fdb46' }}>
+                User successfully created!
+              </span>
+            );
+            setSignupMessage(signupMessage);
+          } else if (!res.status === 200) {
+            const signupMessage = (
+              <span style={{ color: 'red' }}>Something went wrong!</span>
+            );
+            setSignupMessage(signupMessage);
+          }
+        })
+        .catch((err) => console.log(err));
+
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -44,6 +68,7 @@ export default function SignUpForm() {
       <form className='signupForm' onSubmit={(e) => handleSubmit(e)}>
         <h1 className='signupH1'>Create an Account</h1>
         <p className='signupDesc'>Enter your info to create your account</p>
+        {signupMessage}
         <div className='flex signupFullName'>
           <div className='signupContainer flex signupFirstName'>
             <label className='signupLabel'>First Name</label>
