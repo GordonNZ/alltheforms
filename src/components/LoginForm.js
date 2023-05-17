@@ -20,14 +20,6 @@ export default function LoginForm() {
     } else {
       setLoginMessage('');
     }
-    // } else if (email === login[0].email && password === login[0].password) {
-    //   notice.current.innerHTML = 'Login successful';
-    // } else {
-    //   const loginMessage = (
-    //     <p className='loginNotice'>Email or password is incorrect</p>
-    //   );
-    //   setLoginMessage(loginMessage);
-    // }
 
     const login = async () => {
       try {
@@ -37,16 +29,33 @@ export default function LoginForm() {
             password: password,
           })
           .then((res) => {
-            console.log(res);
+            console.log('Response', res);
+            if (res.status === 200) {
+              const loginMessage = (
+                <p className='loginNotice' style={{ color: '#0fdb46' }}>
+                  Login successeful!
+                </p>
+              );
+              setLoginMessage(loginMessage);
+              setEmail('');
+              setPassword('');
+            }
           });
       } catch (error) {
-        console.log(error);
+        console.log('Error', error.response);
+        if (error.response.status === 404) {
+          const loginMessage = <p className='loginNotice'>User is not found</p>;
+          setLoginMessage(loginMessage);
+        } else if (error.response.status === 401) {
+          const loginMessage = <p className='loginNotice'>Invalid Password</p>;
+          setLoginMessage(loginMessage);
+        }
       }
     };
     login();
 
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
     // setEmail('');
     // setPassword('');
   };

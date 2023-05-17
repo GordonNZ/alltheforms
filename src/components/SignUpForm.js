@@ -29,7 +29,7 @@ export default function SignUpForm() {
       );
       return;
     } else {
-      console.log('submit successeful');
+      console.log('submit went through');
 
       axios
         .post('http://localhost:4000/api/signup', {
@@ -54,13 +54,21 @@ export default function SignUpForm() {
             setSignupMessage(signupMessage);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err.response);
+          if (err.response.status === 409) {
+            const signupMessage = (
+              <span style={{ color: 'red' }}>User already exists!</span>
+            );
+            setSignupMessage(signupMessage);
+          }
+        });
 
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setFirstName('');
-      setLastName('');
+      // setEmail('');
+      // setPassword('');
+      // setConfirmPassword('');
+      // setFirstName('');
+      // setLastName('');
     }
   };
   return (

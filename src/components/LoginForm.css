@@ -103,6 +103,7 @@ input[type='checkbox'] {
 .loginNotice {
   color: crimson;
   margin: 0.5rem 0;
+  font-weight: 300;
 }
 .inputContainer {
   width: 100%;
